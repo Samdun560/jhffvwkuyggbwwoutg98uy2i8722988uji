@@ -1,1 +1,47 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Display JSON</title>
+</head>
+<body>
+
+    <h1>Data from JSON</h1>
+    <div id="data-container"></div>
+
+    <script>
+        // Function to load JSON data using Fetch API
+        function loadJSON() {
+            fetch('database/data.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayData(data);
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+        }
+
+        // Function to display JSON data
+        function displayData(data) {
+            var container = document.getElementById("data-container");
+            var output = "<ul>";
+            data.forEach(function(item) {
+                output += "<li>" + item.name + " - " + item.age + "</li>";
+            });
+            output += "</ul>";
+            container.innerHTML = output;
+        }
+
+        // Load JSON data when page is loaded
+        window.onload = loadJSON;
+    </script>
+
+</body>
+</html>
