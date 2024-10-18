@@ -13,7 +13,7 @@
     <script>
         // Function to load JSON data using Fetch API
         function loadJSON() {
-            fetch('database/data.json')
+            fetch('http://catrangsamdun.free.nf/database/data.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
@@ -33,7 +33,7 @@
             var container = document.getElementById("data-container");
             var output = "<ul>";
             data.forEach(function(item) {
-                output += "<li>" + item.name + " - " + item.age + "</li>";
+                output += "<li>" + item.alasan + " - " + item.jumlah + "</li>";
             });
             output += "</ul>";
             container.innerHTML = output;
